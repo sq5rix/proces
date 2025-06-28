@@ -1,0 +1,56 @@
+# Kafka IoT Simulator Configuration
+
+# Kafka Settings
+kafka:
+  bootstrap_servers: "localhost:9092"
+  topics:
+    sensors: "iot-sensors"
+    alerts: "iot-alerts"
+  producer:
+    retries: 5
+    retry_backoff_ms: 1000
+    batch_size: 16384
+    linger_ms: 5
+  consumer:
+    auto_offset_reset: "earliest"
+    group_id: "iot-consumer-group"
+
+# Edge Device Configuration
+edge_devices:
+  temperature_sensor:
+    device_id: "temp-sensor-001"
+    interval: 5  # seconds
+    location:
+      building: "Building-A"
+      floor: 2
+      room: "Server-Room-01"
+    
+  humidity_sensor:
+    device_id: "humidity-sensor-001"
+    interval: 7  # seconds
+    location:
+      building: "Building-A"
+      floor: 2
+      room: "Server-Room-01"
+    
+  motion_detector:
+    device_id: "motion-detector-001"
+    interval: 3  # seconds
+    location:
+      building: "Building-A"
+      floor: 2
+      room: "Server-Room-01"
+      zone: "entrance"
+
+# Simulation Settings
+simulation:
+  realistic_patterns: true
+  time_based_variation: true
+  noise_level: "medium"
+  
+# Monitoring
+monitoring:
+  kafka_ui_port: 8080
+  log_level: "INFO"
+  health_check_interval: 30
+

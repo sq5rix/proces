@@ -205,3 +205,21 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Kafka IoT Simulator specific
+# Docker
+.dockerignore
+
+# Logs
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# DevContainer temporary files
+edge-devices/*/.devcontainer.json
+
+# Kafka data (if running locally)
+kafka-data/
+zookeeper-data/
