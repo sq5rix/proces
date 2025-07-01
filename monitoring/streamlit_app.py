@@ -121,7 +121,7 @@ class KafkaMonitor:
                 except Exception as e:
                     if self.running:
                         st.error(f"Error consuming messages: {e}")
-                        time.sleep(5)
+                        time.sleep(1)  # Add a small sleep to prevent busy-waiting
 
         except Exception as e:
             if self.running:
@@ -130,19 +130,16 @@ class KafkaMonitor:
     def get_recent_messages(self, count: int = 100) -> List[Dict]:
         """Get recent messages from the queue"""
         messages = []
-        temp_messages = []
 
         # Extract all messages from queue
         while not self.message_queue.empty():
             try:
-                temp_messages.append(self.message_queue.get_nowait())
+                messages.append(self.message_queue.get_nowait())
             except queue.Empty:
                 break
 
         # Take the most recent messages
-        recent_messages = (
-            temp_messages[-count:] if len(temp_messages) > count else temp_messages
-        )
+        recent_messages = messages[-count:] if len(messages) > count else messages
 
         # Put messages back in queue
         for msg in recent_messages:
@@ -605,5 +602,5 @@ st.markdown(
 
 # Auto-refresh mechanism
 if auto_refresh:
-    time.sleep(5)
-    st.rerun()
+    # Use st.experimental_rerun() to trigger a rerun for auto-refresh
+ st.experimental_rerun()
