@@ -54,7 +54,6 @@ services:
     build:
       context: ./edge-devices/temperature-sensor
       dockerfile: Dockerfile
-    container_name: temperature-sensor
     depends_on:
       - kafka
     environment:
@@ -69,7 +68,6 @@ services:
     build:
       context: ./edge-devices/humidity-sensor
       dockerfile: Dockerfile
-    container_name: humidity-sensor
     depends_on:
       - kafka
     environment:
@@ -84,7 +82,6 @@ services:
     build:
       context: ./edge-devices/motion-detector
       dockerfile: Dockerfile
-    container_name: motion-detector
     depends_on:
       - kafka
     environment:

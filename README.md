@@ -24,6 +24,10 @@ A comprehensive Kafka-based IoT simulation environment using DevContainers and D
                     └───────────────────────────┘
 ```
 
+## Start
+
+docker-compose up -d --build --scale temperature-sensor=4 --scale humidity-sensor=3 --scale motion-detector=2
+
 ## 🚀 Features
 
 - **DevContainer Support**: Full development environment with VS Code integration
@@ -56,6 +60,7 @@ cd proces
 ```
 
 This will:
+
 - Start Kafka and Zookeeper
 - Launch Kafka UI web interface
 - Build and start all edge device simulators
@@ -65,6 +70,7 @@ This will:
 Access the Kafka UI at: http://localhost:8080
 
 Or use the monitoring script:
+
 ```bash
 ./scripts/monitor.sh status    # Show service status
 ./scripts/monitor.sh logs      # Show all logs
@@ -99,18 +105,21 @@ devcontainer up --workspace-folder .
 ## 📊 Edge Devices
 
 ### Temperature Sensor
+
 - **Device ID**: `temp-sensor-001`
 - **Interval**: 5 seconds
 - **Data**: Temperature in Celsius and Fahrenheit
 - **Features**: Daily temperature cycles, gradual drift, random noise
 
 ### Humidity Sensor
+
 - **Device ID**: `humidity-sensor-001`
 - **Interval**: 7 seconds
 - **Data**: Humidity percentage with comfort levels
 - **Features**: Inverse correlation with temperature, realistic bounds
 
 ### Motion Detector
+
 - **Device ID**: `motion-detector-001`
 - **Interval**: 3 seconds
 - **Data**: Motion detection events with intensity levels
@@ -149,6 +158,7 @@ proces/
 ## 🔍 Monitoring and Debugging
 
 ### Kafka UI Dashboard
+
 - URL: http://localhost:8080
 - View topics, messages, consumer groups
 - Real-time message monitoring
@@ -197,6 +207,7 @@ Each edge device supports the following environment variables:
 ### Kafka Configuration
 
 Edit `config/kafka-config.yml` to modify:
+
 - Kafka settings
 - Device configurations
 - Simulation parameters
@@ -233,16 +244,19 @@ All sensors send messages in a standardized IoT format:
 ## 🚀 Deployment Options
 
 ### Option 1: Docker Compose (Recommended)
+
 ```bash
 ./scripts/start-simulation.sh
 ```
 
 ### Option 2: DevContainer CLI
+
 ```bash
 ./scripts/deploy.sh
 ```
 
 ### Option 3: Manual Docker
+
 ```bash
 # Start infrastructure
 docker-compose up -d zookeeper kafka kafka-ui
@@ -309,8 +323,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 📞 Support
 
 For issues and questions:
+
 - Create an issue in the repository
 - Check the troubleshooting section
 - Review container logs for error details
-
-
