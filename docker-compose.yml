@@ -95,6 +95,22 @@ services:
       - kafka-network
     restart: unless-stopped
 
+  # Monitoring Dashboard
+  streamlit:
+    build:
+      context: ./monitoring
+      dockerfile: Dockerfile
+    container_name: streamlit
+    depends_on:
+      - kafka
+    ports:
+      - "8502:8501"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    networks:
+      - kafka-network
+    restart: unless-stopped
+
 networks:
   kafka-network:
     driver: bridge
