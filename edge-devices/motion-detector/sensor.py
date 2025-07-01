@@ -8,6 +8,7 @@ import json
 import random
 import time
 import logging
+import uuid
 import os
 from datetime import datetime, timedelta
 from kafka import KafkaProducer
@@ -175,7 +176,7 @@ class MotionDetector:
 
 def main():
     # Get configuration from environment variables
-    device_id = os.getenv('DEVICE_ID', 'motion-detector-001')
+    device_id = str(uuid.uuid4()) # Generate a unique UUID for the device ID
     kafka_servers = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092').split(',')
     topic = os.getenv('KAFKA_TOPIC', 'iot-sensors')
     interval = int(os.getenv('SENSOR_INTERVAL', '3'))

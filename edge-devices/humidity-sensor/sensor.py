@@ -8,6 +8,7 @@ import json
 import random
 import time
 import logging
+import uuid
 import os
 import math
 from datetime import datetime
@@ -150,7 +151,8 @@ class HumiditySensor:
 
 def main():
     # Get configuration from environment variables
-    device_id = os.getenv('DEVICE_ID', 'humidity-sensor-001')
+    # Generate a unique device ID using UUID
+    device_id = str(uuid.uuid4())
     kafka_servers = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092').split(',')
     topic = os.getenv('KAFKA_TOPIC', 'iot-sensors')
     interval = int(os.getenv('SENSOR_INTERVAL', '7'))

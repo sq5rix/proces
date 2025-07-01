@@ -11,6 +11,7 @@ import logging
 import os
 import math
 from datetime import datetime
+import uuid
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
 
@@ -137,7 +138,7 @@ class TemperatureSensor:
 
 def main():
     # Get configuration from environment variables
-    device_id = os.getenv('DEVICE_ID', 'temp-sensor-001')
+    device_id = str(uuid.uuid4()) # Generate a unique device ID
     kafka_servers = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092').split(',')
     topic = os.getenv('KAFKA_TOPIC', 'iot-sensors')
     interval = int(os.getenv('SENSOR_INTERVAL', '5'))

@@ -96,7 +96,6 @@ services:
   streamlit:
     build:
       context: ./monitoring
-      dockerfile: Dockerfile
     container_name: streamlit
     depends_on:
       - kafka
